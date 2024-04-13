@@ -1,0 +1,177 @@
+Документација за лабораториска вежба 1 - Елена Николовска 225004
+
+Барање 4:
+Креирање на локален директориум, влез во него и негова иницијализација:
+mkdir SI_2024_lab1_225004
+cd SI_2024_lab1_225004
+git init
+
+Барање 5:
+Поврзување на локален репозиториум со оддалечен репозиториум:
+git remote add origin https://github.com/enikolovska/SI_2024_lab1_225004
+git remote -v
+
+Барање 6:
+Креирање и додавање на README.md:
+nano README.md
+git config --global user.email elenanikolovska03@gmail.com
+git commit -m "Initial commit"
+git push -u origin master
+
+Барање 7:
+Додавање на 3 фајлови:
+git add SILab1Main.java
+git add SILab1_1.java
+git add SILab1_2.java
+git commit -m "Add starter code"
+
+Барање 8:
+Синхронизирање на сите гранки со оддалечениот репозиториум:
+git push origin master
+
+Барање 9:
+Отварање на две гранки:
+git checkout master
+git branch bug1
+git branch bug2
+
+Барање 10:
+Префрлање на гранка bug1:
+git checkout bug1
+
+Барање 11:
+Грешката ја поправив во јава кодот, ја зачував и ја додадов заедно со commit порака:
+git add SILab1_1.java
+git commit -m "Fix wrong condition in filterOddLengthStrings"
+
+Барање 12:
+Префрлање на гранка bug2:
+git checkout bug2
+
+Барање 13:
+Грешката ја поправив во јава кодот, ја зачував и ја додадов заедно со commit порака:
+git add SILab1_2.java
+git commit -m "Fix wrong condition in makeBigStringFrom"
+
+Барање 14:
+Префрлање на гранка bug1:
+git checkout bug1
+
+Барање 15:
+Го додадов повикот до статичкиот метод filterOddLengthStrings во main кодот, го зачував и го додадов заедно со commit порака:
+git add SILab1Main.java
+git commit -m "Call method filterOddLengthStrings in main class"
+
+Барање 16:
+Префрлање на гранка bug2:
+git checkout bug2
+
+Барање 17:
+Го додадов повикот до статичкиот метод makeBigStringFrom во main кодот, го зачував и го додадов заедно со commit порака:
+git add SILab1Main.java
+git commit -m "Call method makeBigStringFrom in main class"
+
+Барање 18:
+Синхронизирање на сите гранки со оддалечениот репозиториум:
+git push origin bug1
+git push origin bug2
+
+Барање 19:
+Префрлање на гранка master:
+git checkout master
+
+Барање 20:
+Спојување на гранката bug1 кон гранката master:
+git merge bug1
+
+Барање 21:
+Синхронизирање на сите гранки со оддалечениот репозиториум:
+git push origin master
+
+Барање 22:
+Префрлање на гранка bug2:
+git checkout bug2
+
+Барање 23:
+rebase на гранка master
+git rebase master
+
+Настана грешка:
+Auto-merging SILab1Main.java
+CONFLICT (content): Merge conflict in SILab1Main.java
+error: could not apply b4e8ede... Call method method makeBigStringFrom in main class
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply b4e8ede... Call method method makeBigStringFrom in main class
+
+Во кодот од main класата го избршиав делот со Head и конфликтот го решив со бришење на повик на System.out.println(SILab1_1.filterOddLengthStrings(list));
+Ги зачував промените и ја додадов изменетата класа.
+$ git add SILab1Main.java
+Продолжувам со rebase:
+git rebase --continue
+
+Како одговор добив:
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# interactive rebase in progress; onto 277e261
+# Last commands done (2 commands done):
+#    pick 5b0b2ef Fix wrong condition in makeBigStringForm
+#    pick b4e8ede Call method method makeBigStringFrom in main class
+# No commands remaining.
+# You are currently rebasing branch 'bug2' on '277e261'.
+#
+# Changes to be committed:
+#       modified:   SILab1Main.java
+#
+# Untracked files:
+#       .idea/
+#
+~
+каде што со помош на Shift + : + qa! + Enter излегов и добив порака:
+[detached HEAD 7a4265b] Call method method makeBigStringFrom in main class
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Successfully rebased and updated refs/heads/bug2.
+
+Барање 24:
+Префрлање на гранка master
+git checkout master
+
+Барање 25:
+Спојување на гранката bug1 кон гранката master:
+git merge bug1
+
+Барање 26:
+Синхронизирање на сите гранки со оддалечениот репозиториум:
+git push origin master
+
+Барање 27:
+Синхронизирање на сите гранки со оддалечениот репозиториум, поради пораката:
+To https://github.com/enikolovska/SI_2024_lab1_225004
+ ! [rejected]        bug2 -> bug2 (non-fast-forward)
+error: failed to push some refs to 'https://github.com/enikolovska/SI_2024_lab1_225004'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+Синхронизирањето на bug2 го извршив со --force:
+git push origin master bug1
+git push origin master bug2 --force
+
+Барање 28:
+Креирав празна датотека logs.txt каде  го зачував излезот од git log,ја додадов заедно со датотеката за документација:
+touch logs.txt
+git log > logs.txt
+git add logs.txt
+git add 225004.txt
+git commit -m"Final commit"
+
+Барање 29:
+Синхронизирање на сите гранки со оддалечениот репозиториум:
+git push origin master 
+
+
+
